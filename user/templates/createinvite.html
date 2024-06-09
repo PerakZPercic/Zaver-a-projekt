@@ -1,0 +1,17 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}
+Chlapík.pop
+{% endblock %}
+
+{% block headcontent %}
+<link rel="stylesheet" href="{% static 'css/createinvite.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div id="cinvite-content">
+    <h2>{{msg}}</h2>
+</div>
+{% endblock %}

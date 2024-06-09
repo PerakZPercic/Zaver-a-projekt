@@ -1,0 +1,23 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}
+Chlapík.pop
+{% endblock %}
+
+{% block headcontent %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div id="home-content">
+    <p id="home-slogan">
+        Don't get owned anymore, get <span style="color: #0000ff" id="home-slogan-highlight">chlapík</span>, be the owner.
+    </p>
+    <a href="{% url 'products' %}">
+        <h3>See products</h3>
+    </a>
+    <!--embed type="image/svg+xml" src="{{ chart }}" id="home-chart"-->
+</div>
+{% endblock %}

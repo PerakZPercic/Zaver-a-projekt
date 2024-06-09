@@ -1,0 +1,50 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}
+Chlapík.pop
+{% endblock %}
+
+{% block headcontent %}
+<link rel="stylesheet" href="{% static 'css/product.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div id="product-content">
+{% if not found_product %}
+    <h1>This product does not exist!</h1>
+{% else %}
+    <div id="product-info">
+        <div id="product-info-header" style="background-image: url('/static/img/backgrounds/{{product.inner_name}}.png');">
+            <h1>{{product.name}}</h1>
+        </div>
+        <div id="product-info-content">
+            <div id="product-info-features">
+                <h2>Features</h2>
+                <ul>
+                {% for category, features in data.features.items %}
+                    <li>
+                        {{category}}
+                    </li>
+                    <li class="product-features-line"></li>
+
+                    {% for feature, fdata in features.items %}
+                        <li>
+                            {{feature}}
+                        </li>
+                    {% endfor %}
+
+                    <li class="product-features-spacer"></li>
+
+                {% endfor %}
+                </ul>
+            </div>
+            <div>
+
+            </div>
+        </div>
+    </div>
+{% endif %}
+</div>
+{% endblock %}

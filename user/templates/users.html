@@ -1,0 +1,47 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}
+Chlapík.pop
+{% endblock %}
+
+{% block headcontent %}
+<link rel="stylesheet" href="{% static 'css/users.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div id="users-content">
+{% for user in my_users %}
+    <a class="users-profile" href="{% url 'profile' uid=user.id %}">
+        <img src="{% static 'img/user.png' %}">
+        <div class="users-profile-info">
+        {% if user.is_banned %}
+            <h1 class="users-profile-banned">{{ user.get_username }}</h1>
+        {% else %}
+            <h1>{{ user.get_username }}</h1>
+        {% endif %}
+            <h2>UID: {{ user.id }}</h2>
+        </div>
+    </a>
+{% endfor %}
+
+    <div class="pagination">
+        <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1"><<</a>
+            <a href="?page={{ page_obj.previous_page_number }}"><</a>
+        {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">></a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">>></a>
+        {% endif %}
+        </span>
+    </div>
+</div>
+{% endblock %}

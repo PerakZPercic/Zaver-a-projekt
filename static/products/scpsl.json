@@ -1,0 +1,38 @@
+{
+    "features": {
+        "Client": {
+            "Electrician": [],
+            "Hit sound": [],
+            "Voice toggle": []
+        },
+
+        "Movement": {
+            "Noclip": [],
+            "BHop": []
+        },
+
+        "Combat": {
+            "Recoil reduction": [],
+            "Aimbot": []
+        },
+
+        "Visuals": {
+            "Full bright": [],
+            "No fog": [],
+            "Player ESP": [],
+            "Item ESP": [],
+            "Player list": [],
+            "Stream proof": []
+        },
+
+        "Audio": {
+            "Hear my self": [],
+            "Microphone distortion": [],
+            "Fake crash": []
+        },
+        
+        "Misc": {
+            "Config system": []
+        }
+    }
+}

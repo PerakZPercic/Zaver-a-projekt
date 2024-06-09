@@ -1,0 +1,49 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}
+{{name}} [{{uid}}]
+{% endblock %}
+
+{% block headcontent %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="profile-content">
+{% if exists %}
+    <div id="profile-box">
+        <div id="profile-header">
+            <img src="{% static 'img/user.png' %}">
+            <div id="profile-header-content">
+                <div id="profile-header-info">
+                    <div class="left">
+                    {% if is_banned %}
+                        <h1 id="profile-header-name-banned">{{name}}</h1>
+                    {% else %}
+                        <h1>{{name}}</h1>
+                    {% endif %}
+                        <h2>UID: {{uid}}</h2>
+                    </div>
+                    <div class="right">
+                    {% if is_banned %}
+                        <h1 id="profile-header-role-banned">Banned</h1>
+                    {% else %}
+                        <h1>Role here</h1>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-spacer"></div>
+
+        <div id="profile-box-content">
+            <embed type="image/svg+xml" src="{{ chart }}" id="profile-chart">
+        </div>
+    </div>
+{% else %}
+    <h1>This user does not exist!</h1>
+{% endif %}
+</div>
+{% endblock %}

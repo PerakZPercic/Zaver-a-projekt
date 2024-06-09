@@ -1,0 +1,33 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block headcontent %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<script type="text/javascript" src="{% static 'js/login.js' %}"></script>
+{% endblock %}
+
+
+{% block content %}
+<div id="login-content">
+{% if not user.is_authenticated %}
+    {% if err_type == 0 %}
+    <h2>Wrong username or password!</h2>
+    {% endif %}
+
+    <form id="login-form" method="post">
+        {% csrf_token %}
+
+        <input type="text" placeholder="Username" name="username" minlength="3" maxlength="32" value="{{ form.get_username }}" autofocus required id="id_username">
+        <input type="password" placeholder="Password" name="password" autocomplete="current-password" value="{{ form.get_password }}" required id="id_password">
+
+        <input type="submit" value="Login">
+    </form>
+{% else %}
+    <h1>You are already logged in!</h1>
+{% endif %}
+</div>
+{% endblock %}

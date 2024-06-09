@@ -1,0 +1,65 @@
+{% load static %}
+
+<header>
+    <nav id="header-nav">
+        <h1>Chlapík.pop</h1>
+
+        <ul>
+            <li>
+                <a href="{% url 'home' %}">Home</a>
+            </li>
+            <li>
+                <a href="{% url 'users' %}">Users</a>
+            </li>
+            <li>
+                <a href="{% url 'products' %}">Products</a>
+            </li>
+        </ul>
+
+        {% if user.is_authenticated %}
+            <div id="header-profile">
+                <a href="javascript:void(0)" onclick="ToggleSidebar()">
+                    <img src="{% static 'img/user.png' %}" id="header-pfp">
+                    {{ user.get_username }}
+                    <p id="profile-sidebar-btn"><</p>
+                </a>
+            </div>
+        {% else %}
+            <ul>
+                <li>
+                    <a href="{% url 'login' %}">Login</a>
+                </li>
+                <li>
+                    <a href="{% url 'register' %}">Register</a>
+                </li>
+            </ul>
+        {% endif %}
+    </nav>
+{% if user.is_authenticated %}
+    <div id="header-sidebar">
+        <a class="header-sidebar-entry" href="{% url 'profile' uid=user.id %}">
+            <img src="{% static 'img/profile.png' %}">
+            <p>Your profile</p>
+        </a>
+        <a class="header-sidebar-entry" href="{% url 'create_invite' %}">
+            <img src="{% static 'img/profile.png' %}">
+            <p>Create invitation</p>
+        </a>
+        <a class="header-sidebar-entry" href="">
+            <img src="{% static 'img/settings.png' %}">
+            <p>Account settings</p>
+        </a>
+        <a class="header-sidebar-entry" href="/static/downloads/LoaderV2.exe">
+            <img src="{% static 'img/download.png' %}">
+            <p>Download loader</p>
+        </a>
+
+        <div class="header-sidebar-spacer"></div>
+
+        <a id="header-sidebar-logout-btn" class="header-sidebar-entry" href="{% url 'logout' %}">
+            <img src="{% static 'img/logout.png' %}">
+            <p>Log out</p>
+        </a>
+    </div>
+{% endif %}
+</header>

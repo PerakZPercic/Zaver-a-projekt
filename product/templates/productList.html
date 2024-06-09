@@ -1,0 +1,58 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}
+Chlapík.pop
+{% endblock %}
+
+{% block headcontent %}
+<link rel="stylesheet" href="{% static 'css/productList.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div id="products-content">
+{% for product in my_products %}
+    <a class="products-item" href="{% url 'product' name=product.inner_name %}" style="background-image: url('/static/img/backgrounds/{{product.inner_name}}.png');">
+        <div class="product-item-left product-itcontent">
+            <h2>{{product.name}}</h2>
+        </div>
+        <div class="product-item-right product-itcontent">
+            <div class="product-item-status">
+                <h2>Status: </h2>
+            {% if product.status == 0 %}
+                <h2 style="color: rgb(252, 136, 3);">Unknown</h2>
+                <img src="{% static 'img/unknown_status.png' %}">
+            {% endif %}
+            {% if product.status == 1 %}
+                <h2 style="color: rgb(87, 201, 0);">Undetected</h2>
+                <img src="{% static 'img/undetected_status.png' %}">
+            {% endif %}
+            {% if product.status == 2 %}
+                <h2 style="color: rgb(255, 18, 18);">Detected</h2>
+                <img src="{% static 'img/detected_status.png' %}">
+            {% endif %}
+            </div>
+        </div>
+    </a>
+{% endfor %}
+
+    <div class="pagination">
+        <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1"><<</a>
+            <a href="?page={{ page_obj.previous_page_number }}"><</a>
+        {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">></a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">>></a>
+        {% endif %}
+        </span>
+    </div>
+</div>
+{% endblock %}
